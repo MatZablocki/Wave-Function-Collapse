@@ -3,6 +3,7 @@ const cellCount = 8;
 const perCell = screenSize / cellCount;
 let img = [];
 let cells = [];
+let tiles = [];
 function preload() {
   
   img[0] = loadImage("images/1.png");
@@ -24,12 +25,38 @@ function setup() {
   cells[8] = cells[7].rotate(1);
   cells[9] = cells[7].rotate(2);
   cells[10] = cells[7].rotate(3);
+  
+  for(let i=0;i<cellCount;i++) {
+    for(let j=0;j<cellCount;j++) {
+      tiles[[i][j]] = new tile(cells.length);
+    }
+  }
 }
 
 function draw() {
+  let lowestEntropy = cells.length;
+  let x,y;
+  let fin = true;
   for(let i=0;i<cellCount;i++) {
     for(let j=0;j<cellCount;j++) {
-      image(cells[i].getImg(),i*perCell,j*perCell,perCell,perCell);
+      if(tiles[[i][j]].collapsed == false) {
+        let temp = tiles[[i][j]].getPossibilityLen();
+        
+        if(temp<= lowestEntropy) {
+          x = i;
+          y = j;
+          lowestEntropy = tiles[[i][j]].possibilites;
+        }
+        fin = false;
+      }
+      else {
+        image(tiles[[i][j]].getImg(),i*perCell,j*perCell,perCell,perCell);
+      }
     }
   }
+  if(!fin) {
+    tiles[[x][y]].collapse();
+  }
+  
+
 }

@@ -29,8 +29,6 @@ class cell {
         newImg.translate(w/2,h/2);
         newImg.rotate(HALF_PI*num);
         newImg.image(this.img,0,0);
-
-        console.log(newLinks);
         
         return new cell(newImg,newLinks);
     }
