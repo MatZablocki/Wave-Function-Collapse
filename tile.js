@@ -11,11 +11,16 @@ class tile {
         return this.possibilities.length;
     }
 
+    getCollapsed() {
+        return this.collapsed;
+    }
+
+
     collapse() {
         let randomPick = random(this.possibilities);
         this.image = cells[randomPick-1].getImg();
         this.collapsed = true;
-        this.possibilities = [];
+        // this.possibilities = [];
     }
 
     getImg() {
