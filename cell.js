@@ -11,16 +11,18 @@ class cell {
         return this.img;
     }
 
+    getLinks() {
+        return this.links;
+    }
+
     rotate(num) {
         let newLinks = "";
         for(let i=0;i<this.linkLen;i++) {
             let linkAt;
-            let j = i%this.linkLen;
-            
+            let j = ((i-num % this.linkLen) + this.linkLen) % this.linkLen;            
             linkAt = this.links.charAt(j);
             newLinks += linkAt;
         }
-        this.links = newLinks;
 
         let w = this.img.width;
         let h = this.img.height;
