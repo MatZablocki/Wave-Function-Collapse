@@ -1,4 +1,4 @@
-const screenSize = 800;
+const screenSize = 600;
 const cellCount = 16;
 const perCell = screenSize / cellCount;
 let img = [];
